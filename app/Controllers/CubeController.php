@@ -2,12 +2,14 @@
 
 namespace App\Controllers;
 
-use App\Migrations\Users;
-use App\Models\UsersModel;
-use Cube\Http\Response;
+use Cube\Tools\Auth;
 use Cube\Http\Request;
+use Cube\Http\Response;
+use App\Migrations\Users;
 use Cube\Http\Controller;
+use App\Models\UsersModel;
 use Cube\Misc\InputValidator;
+use Cube\Exceptions\AuthException;
 
 class CubeController extends Controller
 {
@@ -35,8 +37,13 @@ class CubeController extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
 
-        dd($username);
-        return $response->redirect(route('/login'));
+        try {
+            Auth::attempt($username, password_hash($password, PASSWORD_DEFAULT));
+            
+        } catch (AuthException $th) {
+            return $response->withSession('msg', $th->getMessage())->redirect(route('home'));
+        }
+        return $response->redirect(route('dashboard'));
     }
 
     /**
@@ -76,7 +83,7 @@ class CubeController extends Controller
         
         if (!InputValidator::isValid()) {
             $errors = InputValidator::getListedErrors();
-            return $response->withSession('msg', $errors)->redirect(route('register'));
+            return $response->withSession('msg', $errors)->redirect(route('home'));
         }
 
         UsersModel::createEntry([
@@ -84,13 +91,13 @@ class CubeController extends Controller
             'firstname' => $firstname,
             'lastname' => $lastname,
             'email' => $email,
-            'password' => $password,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
             'access_type' => UsersModel::ACCESS_TYPE_ADMIN,
         ]);
 
         $msg = 'You have registered successfully';
 
-        return $response->withSession('msg', $msg)->redirect(route('register'));
+        return $response->withSession('msg', $msg)->redirect(route('home'));
     }
 
 }

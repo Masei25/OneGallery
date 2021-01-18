@@ -9,10 +9,11 @@ use Cube\Router\Router;
 $router = new Router();
 
 #Add routes
-$router->any('/', 'CubeController.home');
+$router->any('/', 'CubeController.home')->name('home');
 
-
-$router->get('/login', '@login');
 $router->post('/login', 'CubeController.login')->name('login');
-$router->post('/register', 'CubeController.register')->name('register');
+
+$router->post('/register', 'CubeController.register')->name('home');
+
+$router->get('/dashboard', 'dashboard')->name('dashboard');
 
