@@ -14,7 +14,7 @@ return array(
         'secret_key' => 'password',
         'fields' => array(
             'username' => null,
-            //'email' => 'is_email'
+            'email' => 'is_email'
         )
     )
 );
