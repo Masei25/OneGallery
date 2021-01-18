@@ -1,0 +1,14 @@
+#!/usr/bin/php
+<?php
+
+require_once './vendor/autoload.php';
+
+use Cube\App;
+use Cube\Helpers\Cli\Cli;
+
+#Register system paths
+App::registerPath();
+
+#Listen for command line tools
+$cli = new Cli();
+$cli->listen();

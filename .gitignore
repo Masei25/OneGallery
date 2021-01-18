@@ -1,0 +1,8 @@
+**/dwoo/lib/compiled/
+flat-db/**
+**/FlatDb
+.idea
+.env
+vendor
+**/.DS_Store
+error_log
