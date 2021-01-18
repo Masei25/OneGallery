@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>OneGallery</title>
+		{{css('styles')}}
+		{{jscript('cube')}}
+		{{css('tailwind')}}
+	</head>
+	<body class="text-gray-200 bg-gray-900">
+		<section class="flex flex-auto justify-between items-center lg:px-32 px-6 py-4 border-b border-gray-700">
+			<div>
+				<a href="" class="mr-2">
+					OneGallery
+				</a>
+			</div>
+			<div>
+				<form action="" class="flex justify-center bg-white rounded-lg mr-2">
+					<input type="search" name="search" id="search" placeholder="Search" class="flex-auto outline-none p-2 md:w-96 w-48 rounded-lg">
+					<button class="text-grey-500 opacity-25 hover:opacity-100 transition ">
+						<svg viewbox="0 0 24 24" fill="black" width="36px" height="36px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+					</button>
+				</form>
+			</div>
+			<div>
+				<a href="" class="modal-open hover:border-indigo-500">
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+					</svg>
+				</a>
+			</div>
+
+			{% block main %}
+            
+            
+            {% endblock %}
+        </section>
+	</body>
+</html>
