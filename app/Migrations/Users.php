@@ -21,8 +21,6 @@ class Users implements MigrationInterface
             ->create(function (DBTableBuilder $table) {
                 $table->field('id')->int()->increment();
                 $table->field('username')->varchar();
-                $table->field('firstname')->varchar();
-                $table->field('lastname')->varchar();
                 $table->field('email')->varchar();
                 $table->field('password')->varchar();
                 $table->field('access_type')->varchar();

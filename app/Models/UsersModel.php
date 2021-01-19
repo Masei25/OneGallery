@@ -8,18 +8,16 @@ class UsersModel extends Model
 {
     protected static $schema = 'users';
 
+    const ACCESS_TYPE_ADMIN = 1;
+    const ACCESS_TYPE_USER = 0;
+
     protected static $fields = array(
         'id',
         'username',
-        'firstname',
-        'lastname',
         'email',
         'password',
         'access_type',
         'created_at',
         'updated_at'
     );
-
-    const ACCESS_TYPE_ADMIN = 0;
-    const ACCESS_TYPE_USER = 0;
 }

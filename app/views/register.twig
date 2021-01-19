@@ -1,0 +1,58 @@
+{% include "home.twig" %}
+
+{% block main %}
+    <div class="lg:w-3/12 mx-auto mt-20">
+        <div class="text-green-200 text-sm mb-5">
+                {{notification('username')}}
+        </div>
+        <h1 class="text-lg text-gray-300 uppercase mb-5 flex justify-center">
+            Create an account
+        </h1>
+        <form action="" method="post">
+            <div class="text-red-200 text-sm">
+                {{get_notification('username')}}
+            </div>
+            <div class="flex justify-center">
+                <input type="text" 
+                    name="username"
+                    id="username" 
+                    placeholder="Username" 
+                    class="w-96 md:w-full mb-4 p-2 outline-none text-white border-b-2 bg-gray-800 focus:bg-gray-600 duration-200 easy-in-out rounded">
+            </div>
+            <div class="text-red-200 text-sm">
+                {{get_notification('email')}}
+            </div>
+            <div class="flex justify-center">
+                <input 
+                    type="text" 
+                    name="email" 
+                    id="email"
+                    placeholder="Email" 
+                    class="w-96 md:w-full mb-4 p-2 outline-none text-white border-b-2 bg-gray-800 focus:bg-gray-600 duration-200 easy-in-out rounded">
+            </div>
+            <div class="text-red-200 text-sm">
+                {{get_notification('password')}}
+            </div>
+            <div class="flex justify-center">
+                <input 
+                    type="password" 
+                    name="password" 
+                    id="password"
+                    placeholder="Password" 
+                    class="w-96 md:w-full mb-4 p-2 outline-none text-white border-b-2 bg-gray-800 focus:bg-gray-600 duration-200 easy-in-out rounded"> 
+            </div>
+            <div class="flex justify-center">
+                <input 
+                    type="password" 
+                    name="password2" 
+                    id="password2"
+                    placeholder="Confirm password" 
+                    class="w-96 md:w-full mb-4 p-2 outline-none text-white border-b-2 bg-gray-800 focus:bg-gray-600 duration-200 easy-in-out rounded"> 
+            </div>
+            <div class="flex justify-center">
+                <button type="submit" class="w-96 md:w-full bg-white p-2 text-gray-500 mt-2 rounded">Create Account</button>
+            </div>
+        </form>
+    </div>
+{{remove_notification()}}
+{% endblock %}

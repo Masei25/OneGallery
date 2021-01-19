@@ -8,11 +8,13 @@
 		{{css('styles')}}
 		{{jscript('cube')}}
 		{{css('tailwind')}}
+        <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+        <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
 	</head>
 	<body class="text-gray-200 bg-gray-900">
 		<section class="flex flex-auto justify-between items-center lg:px-32 px-6 py-4 border-b border-gray-700">
 			<div>
-				<a href="" class="mr-2">
+				<a href="/" class="mr-2">
 					OneGallery
 				</a>
 			</div>
@@ -31,11 +33,11 @@
 					</svg>
 				</a>
 			</div>
-
-			{% block main %}
-            
-            
-            {% endblock %}
         </section>
+		{% block main %}
+            
+            
+        {% endblock %}
+        
 	</body>
 </html>

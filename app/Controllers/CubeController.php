@@ -53,51 +53,45 @@ class CubeController extends Controller
      * @param Response $response
      * @return response
      */
+    
     public function register(Request $request, Response $response)
     {
         $username = $request->input('username');
-        $firstname = $request->input('firstname');
-        $lastname = $request->input('lastname');
         $email = $request->input('email');
         $password = $request->input('password');
-        $password1 = $request->input('password1');
-        
+        $password2 = $request->input('password2');  
 
         InputValidator::init([
             "uniqueField" => function (InputValidator $validator, string $field, string $message) {
                 if ($validator->getValue() == '') {
                     return null;
                 }
-                if (UsersModel::findby($field, $validator->getValue())) {
 
+                if (UsersModel::findby($field, $validator->getValue())) {
                     $validator->attachError($message);
                 }
             }
         ]);
 
         $username->validate('required')->uniqueField('username', 'Username has already been registered');
-        $lastname->validate('required');
-        $firstname->validate('required');
         $email->validate('required')->uniqueField('email', 'Email has already been registered');
-        $password->validate('required')->equals($password1, "Password does not match");
+        $password->validate('required')->equals($password2, "Password does not match");
         
         if (!InputValidator::isValid()) {
-            $errors = InputValidator::getListedErrors();
-            return $response->withSession('msg', $errors)->redirect(route('home'));
+            $errors = InputValidator::getErrors();
+            return $response->withSession('msg', $errors)->redirect('/register');
         }
 
         UsersModel::createEntry([
             'username' => $username,
-            'firstname' => $firstname,
-            'lastname' => $lastname,
             'email' => $email,
             'password' => password_hash($password, PASSWORD_DEFAULT),
             'access_type' => UsersModel::ACCESS_TYPE_ADMIN,
         ]);
 
-        $msg = 'You have registered successfully';
+        $msg = 'Registration successfully, please login to continue';
 
-        return $response->withSession('msg', $msg)->redirect(route('home'));
+        return $response->withSession('msgs', $msg)->redirect('/register');
     }
 
 }
