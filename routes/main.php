@@ -9,18 +9,17 @@ use Cube\Router\Router;
 $router = new Router();
 
 #Add routes
-$router->any('/', 'CubeController.home');
+$router->get('/', 'CubeController.home');
 
 $router->group()->register(function(Router $router){
-    $router->post('/login', 'CubeController.login')->name('login');
+    $router->post('/', 'CubeController.login');
 
     $router->get('/register', '@register');
 
     $router->post('/register', 'CubeController.register');
 });
 
-
-
-
-$router->get('/dashboard', 'dashboard')->name('dashboard');
+$router->group('/dashboard')->namespace('Dashboard')->register(function(Router $router){
+    $router->get('/', 'MainController.index');
+});  
 

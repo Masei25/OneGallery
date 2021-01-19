@@ -36,14 +36,15 @@ class CubeController extends Controller
     {
         $username = $request->input('username');
         $password = $request->input('password');
+        dd($username);
 
         try {
-            Auth::attempt($username, password_hash($password, PASSWORD_DEFAULT));
+            Auth::attempt($username, $password);
             
         } catch (AuthException $th) {
             return $response->withSession('msg', $th->getMessage())->redirect(route('home'));
         }
-        return $response->redirect(route('dashboard'));
+        return $response->redirect('/dashboard');
     }
 
     /**

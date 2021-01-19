@@ -2,10 +2,12 @@
 
 {% block main %}
 	<!--Modal-->
+    {{get_notification('email')}}
 	<div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
 		<div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
-		<div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+		<div
+			class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
 			<!-- Add margin if you want to see some of the overlay behind the modal-->
 			<div
 				class="modal-content py-4 text-left px-6 bg-gray-700">
@@ -20,71 +22,64 @@
 				</div>
 
 				<!--Body-->
-				 <form action="" method="post">
-            <div class="flex justify-center">
-                <input type="text" 
-                    name="email" 
-                    placeholder="Email" 
-                    class="w-96 md:w-full mb-4 p-2 outline-none text-white border-b-2 bg-gray-700 focus:bg-gray-600 duration-200 easy-in-out rounded">
-            </div>
-            <div class="flex justify-center">
-                <input 
-                    type="password" 
-                    name="password" 
-                    placeholder="Password" 
-                    class="w-96 md:w-full mb-4 p-2 outline-none text-white border-b-2 bg-gray-700 focus:bg-gray-600 duration-200 easy-in-out rounded"> 
-            </div>
-            <div class="flex justify-center">
-                <button type="submit" class="w-96 md:w-full bg-white p-2 text-gray-500 mt-2 rounded">Login</button>
-            </div>
-        </form>
-
+                {{get_notification('email')}}
+				<form action="" method="post">
+					<div class="flex justify-center">
+						<input type="text" name="username" id="username" placeholder="Email" class="w-96 md:w-full mb-4 p-2 outline-none text-white border-b-2 bg-gray-700 focus:bg-gray-600 duration-200 easy-in-out rounded">
+					</div>
+					<div class="flex justify-center">
+						<input type="password" name="password" id="password" placeholder="Password" class="w-96 md:w-full mb-4 p-2 outline-none text-white border-b-2 bg-gray-700 focus:bg-gray-600 duration-200 easy-in-out rounded">
+					</div>
+					<div class="flex justify-center">
+						<button type="submit" class="w-96 md:w-full bg-white p-2 text-gray-500 mt-2 rounded">Login</button>
+					</div>
+				</form>
 
 				<!--Footer-->
 				<div class="flex justify-center mt-5">
-            <a href="/register">Don't have an account? Sign Up</a>
-        </div>
+					<a href="/register">Don't have an account? Sign Up</a>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<script>
-		var openmodal = document.querySelectorAll('.modal-open')
-        for (var i = 0; i < openmodal.length; i++) {
-        openmodal[i].addEventListener('click', function (event) {
-        event.preventDefault()
-        toggleModal()
-        })
-        }
+	var openmodal = document.querySelectorAll('.modal-open')
+    for (var i = 0; i < openmodal.length; i++) {
+    openmodal[i].addEventListener('click', function (event) {
+    event.preventDefault()
+    toggleModal()
+    })
+    }
 
-        const overlay = document.querySelector('.modal-overlay')
-        overlay.addEventListener('click', toggleModal)
+    const overlay = document.querySelector('.modal-overlay')
+    overlay.addEventListener('click', toggleModal)
 
-        var closemodal = document.querySelectorAll('.modal-close')
-        for (var i = 0; i < closemodal.length; i++) {
-        closemodal[i].addEventListener('click', toggleModal)
-        }
+    var closemodal = document.querySelectorAll('.modal-close')
+    for (var i = 0; i < closemodal.length; i++) {
+    closemodal[i].addEventListener('click', toggleModal)
+    }
 
-        document.onkeydown = function (evt) {
-        evt = evt || window.event
-        var isEscape = false
-        if ("key" in evt) {
-        isEscape = (evt.key === "Escape" || evt.key === "Esc")
-        } else {
-        isEscape = (evt.keyCode === 27)
-        }
-        if (isEscape && document.body.classList.contains('modal-active')) {
-        toggleModal()
-        }
-        };
+    document.onkeydown = function (evt) {
+    evt = evt || window.event
+    var isEscape = false
+    if ("key" in evt) {
+    isEscape = (evt.key === "Escape" || evt.key === "Esc")
+    } else {
+    isEscape = (evt.keyCode === 27)
+    }
+    if (isEscape && document.body.classList.contains('modal-active')) {
+    toggleModal()
+    }
+    };
 
 
-        function toggleModal() {
-        const body = document.querySelector('body')
-        const modal = document.querySelector('.modal')
-        modal.classList.toggle('opacity-0')
-        modal.classList.toggle('pointer-events-none')
-        body.classList.toggle('modal-active')
-        }
+    function toggleModal() {
+    const body = document.querySelector('body')
+    const modal = document.querySelector('.modal')
+    modal.classList.toggle('opacity-0')
+    modal.classList.toggle('pointer-events-none')
+    body.classList.toggle('modal-active')
+    }
 	</script>
 {% endblock %}
